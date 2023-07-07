@@ -17,6 +17,9 @@
     </template>
 
     <template #messages>
+      <header class="header">
+        {{ titleChannel }}
+      </header>
       <router-view></router-view>
     </template>
 
@@ -30,7 +33,7 @@
   import useChannelsStore from "@/stores/channels.store.js"
   import { storeToRefs } from "pinia";
   import { useRouter, useRoute } from "vue-router"
-  import { ref } from "vue";
+  import { ref, watch } from "vue";
 
   const router = useRouter()
   const route = useRoute()
@@ -39,11 +42,17 @@
   const { channels } = storeToRefs(channelsStore)
   const id = parseInt(route.params.id)
   const selectId = ref(id)
+  const titleChannel = ref('')
+
 
   const select = (id) => {
     selectId.value = id
     router.push(`/${id}`)    
   }
+
+  watch(() => route.params.id, () => {
+    titleChannel.value = channelsStore.getChannelNameById(selectId)
+  }, {immediate: true})
 </script>
 
 <style scoped>

@@ -8,5 +8,12 @@ export default defineStore('channels', {
       {id: 3, name: 'production'},
       {id: 4, name: 'proyectos'},
     ]
-  })
+  }),
+  getters: {
+    getChannelNameById: (state) => (channelId) => {
+      return state.channels.filter( channel => {
+        return channel.id === channelId.value
+      }).map(channel => channel.name)[0]
+    }
+  }
 })
