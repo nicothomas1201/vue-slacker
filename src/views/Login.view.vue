@@ -20,7 +20,7 @@
 
 <script setup>
   import { useRouter } from 'vue-router';
-  import useLoginStore from '@/stores/Login.stores.js'
+  import useLoginStore from '@/stores/login.store.js'
   import { storeToRefs } from 'pinia';
 
   const router = useRouter()
