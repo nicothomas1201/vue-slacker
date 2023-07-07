@@ -8,7 +8,10 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
+      meta: {
+        auth: true
+      }
     },
     {
       path: '/login',
@@ -17,6 +20,17 @@ const router = createRouter({
     }
     
   ]
+})
+
+router.beforeEach((to, from) => {
+  const user = JSON.parse(localStorage.getItem('user'))
+
+  if(to.meta.auth && !user){
+    return '/login'
+  }else {
+    return true
+  }
+
 })
 
 export default router
