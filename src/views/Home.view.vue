@@ -16,12 +16,27 @@
       </div>
     </template>
 
+    
+      
+
     <template #messages>
-      <header class="header">
-        {{ titleChannel }}
+      <header class="header-messages">
+        <h2 class="title">
+          # {{ titleChannel }}
+        </h2>
       </header>
+
       <router-view></router-view>
+      
+      <form class="footer ">
+        <input type="text" :placeholder="`Enviar un mensaje a #${titleChannel}`" />
+        <button class="button-submit">
+          <Send color="white" />
+          <!-- <img src="@/assets/icons/send.png" /> -->
+        </button>
+      </form>
     </template>
+  
 
   </Layout>
   
@@ -30,6 +45,7 @@
 <script setup>
   import Channel from "@/components/Channel.vue"
   import Layout from "../components/Layout.vue";
+  import Send from "../components/Icons/send.vue";
   import useChannelsStore from "@/stores/channels.store.js"
   import { storeToRefs } from "pinia";
   import { useRouter, useRoute } from "vue-router"
@@ -71,5 +87,46 @@
   padding: 0;
   display: flex;
   flex-direction: column;
+}
+
+.header-messages{
+  grid-area: header;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 6px;  
+  border-block-end: 1px solid #B4B4B4;
+  padding-inline: 16px;
+  background-color: var(--black);
+}
+
+.header-messages .title{
+  margin: 0;
+  font: var(--body1-bold);
+}
+
+.footer{
+  border: 1px solid var(--grey);
+  background: var(--black);
+  display: flex;
+  grid-area: footer;
+  margin-inline: 16px;
+}
+
+.footer input{
+  background: transparent;
+  border: none;
+  outline: none;
+  flex: 1;
+  font: var(--body2-regular);
+  color: var(--white);
+  padding: 14.5px 8px;
+}
+
+.button-submit{
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
 </style>

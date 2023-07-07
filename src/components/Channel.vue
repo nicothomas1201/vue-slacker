@@ -1,6 +1,6 @@
 <template>
   <li @click="handleClick" :class="classActive">
-      {{ name }}
+      # {{ name }}
   </li>  
 </template>
 
