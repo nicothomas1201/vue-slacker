@@ -11,7 +11,14 @@ const router = createRouter({
       component: Home,
       meta: {
         auth: true
-      }
+      },
+      children: [
+        {
+          path: ':id(\\d)',
+          name: 'channels',
+          component: () => import('@/views/Messages.view.vue')
+        }
+      ]
     },
     {
       path: '/login',

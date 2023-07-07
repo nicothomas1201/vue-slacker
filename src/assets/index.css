@@ -22,6 +22,6 @@ body{
   font: var(--body1-regular);
   margin: 0;
   padding: 0;
-  background-color: var(--primary);
+  background-color: var(--black);
   color: var(--white)
 }
