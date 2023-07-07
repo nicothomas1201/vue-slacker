@@ -1,5 +1,7 @@
 <template>
-  <li @click="handleClick" :class="classActive">{{ name }}</li>  
+  <li @click="handleClick" :class="classActive">
+      {{ name }}
+  </li>  
 </template>
 
 <script setup>

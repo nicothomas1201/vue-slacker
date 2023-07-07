@@ -17,9 +17,7 @@
     </template>
 
     <template #messages>
-      <div>
-        Messages view aqui
-      </div>
+      <router-view></router-view>
     </template>
 
   </Layout>
@@ -31,14 +29,20 @@
   import Layout from "../components/Layout.vue";
   import useChannelsStore from "@/stores/channels.store.js"
   import { storeToRefs } from "pinia";
+  import { useRouter, useRoute } from "vue-router"
   import { ref } from "vue";
+
+  const router = useRouter()
+  const route = useRoute()
 
   const channelsStore = useChannelsStore()
   const { channels } = storeToRefs(channelsStore)
-  const selectId = ref(1)
+  const id = parseInt(route.params.id)
+  const selectId = ref(id)
 
   const select = (id) => {
     selectId.value = id
+    router.push(`/${id}`)    
   }
 </script>
 

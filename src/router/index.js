@@ -16,7 +16,8 @@ const router = createRouter({
         {
           path: ':id(\\d)',
           name: 'channels',
-          component: () => import('@/views/Messages.view.vue')
+          component: () => import('@/views/Messages.view.vue'),
+          props: true
         }
       ]
     },
