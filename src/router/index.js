@@ -15,10 +15,9 @@ const router = createRouter({
       children: [
         {
           path: ':id(\\d)',
-          name: 'channels',
           component: () => import('@/views/Messages.view.vue'),
           props: true
-        }
+        },
       ]
     },
     {
@@ -36,6 +35,7 @@ router.beforeEach((to, from) => {
   if(to.meta.auth && !user){
     return '/login'
   }else {
+    if(to.path === '/') return '/1'
     return true
   }
 
