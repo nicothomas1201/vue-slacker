@@ -75,9 +75,14 @@
   }
 
   const addMessage = () => {
+    const now = new Date()
+    const hour = now.getHours()
+    const minutes = now.getMinutes()
+    const time = `${hour}:${minutes}`
     const data = {
       id: Math.random(),
       text: inputText.value,
+      time,
       channelId: route.params.id,
       author: 1, // obtener el id desde el local storage
 

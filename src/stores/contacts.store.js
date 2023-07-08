@@ -1,12 +1,15 @@
 import { defineStore } from "pinia"
+import useProfileStore from "./profile.store.js"
+
+const profileStore = useProfileStore()
 
 export default defineStore('contacts', {
   state: () => ({
     contacts: [
       {
-        id: 1,
-        username: 'nicolas',
-        avatar: "/avatars/miguel.png"
+        id: profileStore.id,
+        username: profileStore.username,
+        avatar: profileStore.avatar
       },
       {
         id: 2,
