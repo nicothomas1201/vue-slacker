@@ -29,10 +29,13 @@
       <router-view></router-view>
       
       <form class="footer ">
-        <input type="text" :placeholder="`Enviar un mensaje a #${titleChannel}`" />
+        <input 
+          type="text" 
+          :placeholder="`Enviar un mensaje a #${titleChannel}`" 
+          v-model="inputText"
+        />
         <button class="button-submit">
-          <Send color="white" />
-          <!-- <img src="@/assets/icons/send.png" /> -->
+          <Send :color="iconColor" />
         </button>
       </form>
     </template>
@@ -59,6 +62,8 @@
   const id = parseInt(route.params.id)
   const selectId = ref(id)
   const titleChannel = ref('')
+  const inputText = ref('')
+  const iconColor = ref('white')
 
 
   const select = (id) => {
@@ -66,9 +71,22 @@
     router.push(`/${id}`)    
   }
 
-  watch(() => route.params.id, () => {
-    titleChannel.value = channelsStore.getChannelNameById(selectId)
-  }, {immediate: true})
+  watch(
+    () => route.params.id, 
+    () => {
+      titleChannel.value = channelsStore.getChannelNameById(selectId)
+    }, 
+    { immediate: true }
+  )
+
+  watch(inputText, (value) => {
+    if(value !== ''){
+      iconColor.value = "#2bac76"
+    } else {
+      iconColor.value = "white"
+    }
+    
+  })
 </script>
 
 <style scoped>
