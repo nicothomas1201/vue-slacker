@@ -3,11 +3,11 @@
     <form @submit.prevent="submit" class="form">
       <div class="header-form">
         <h2 class="form-title">Inicia Sesión</h2>
-        <button class="button-google">Continuar con google</button>
+        <!-- <button class="button-google">Continuar con google</button> -->
       </div>
       <div class="form-field">
-        <label for="email">Correo electronico</label>
-        <input required v-model="email" id="email" type="email" placeholder="Ingresa tu correo" />
+        <label for="username">Ingresa tu usuario</label>
+        <input required v-model="username" id="username" type="text" placeholder="Ingresa tu usuario" />
       </div>
       <div class="form-field">
         <label for="password">Ingresa tu contraseña</label>
@@ -26,13 +26,13 @@
   const router = useRouter()
   const loginStore = useLoginStore()
 
-  const { email, password } = storeToRefs(loginStore)
+  const { username, password } = storeToRefs(loginStore)
 
   
 
   const submit = () => {
     const user = {
-      email: email.value, 
+      username: username.value, 
       password: password.value
     }
     

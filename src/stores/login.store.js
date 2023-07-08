@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 
 export default defineStore('login', {
   state: () => ({
-    email: '',
+    username: '',
     password: ''
   }),
   getters: {
