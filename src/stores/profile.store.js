@@ -5,5 +5,10 @@ export default defineStore('profile', {
     id: 1, 
     username: 'nicolas',
     avatar: '/avatars/miguel.png'
-  })
+  }),
+  actions: {
+    changeUsername(newUsername){
+      this.username = newUsername
+    }
+  }
 })
