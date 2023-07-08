@@ -7,6 +7,7 @@
       :username="msg.author.username"
       :avatar="msg.author.avatar"
       :time="msg.time"
+      :authorId="msg.author.id"
     />
   </div>
 </template>

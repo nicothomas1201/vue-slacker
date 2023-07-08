@@ -23,7 +23,11 @@ export default defineStore('messages',{
       return state.messages.filter( msg => {
         return msg.channelId.toString() === id.value
       })
-    },
-    
+    },    
+  },
+  actions: {
+    addMessage(data){
+      this.messages.push(data)
+    }
   }
 })

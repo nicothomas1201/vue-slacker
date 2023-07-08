@@ -4,6 +4,11 @@ export default defineStore('contacts', {
   state: () => ({
     contacts: [
       {
+        id: 1,
+        username: 'nicolas',
+        avatar: "/avatars/miguel.png"
+      },
+      {
         id: 2,
         username: 'cristopher',
         avatar: "/avatars/cristopher.png"

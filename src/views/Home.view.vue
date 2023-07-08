@@ -28,7 +28,7 @@
 
       <router-view></router-view>
       
-      <form class="footer ">
+      <form @submit.prevent="addMessage" class="footer ">
         <input 
           type="text" 
           :placeholder="`Enviar un mensaje a #${titleChannel}`" 
@@ -50,6 +50,7 @@
   import Layout from "../components/Layout.vue";
   import Send from "../components/Icons/send.vue";
   import useChannelsStore from "@/stores/channels.store.js"
+  import useMessagesStore from "@/stores/messages.store.js"
   import { storeToRefs } from "pinia";
   import { useRouter, useRoute } from "vue-router"
   import { ref, watch } from "vue";
@@ -58,7 +59,9 @@
   const route = useRoute()
 
   const channelsStore = useChannelsStore()
+  const messagesStore = useMessagesStore()
   const { channels } = storeToRefs(channelsStore)
+
   const id = parseInt(route.params.id)
   const selectId = ref(id)
   const titleChannel = ref('')
@@ -69,6 +72,19 @@
   const select = (id) => {
     selectId.value = id
     router.push(`/${id}`)    
+  }
+
+  const addMessage = () => {
+    const data = {
+      id: Math.random(),
+      text: inputText.value,
+      channelId: route.params.id,
+      author: 1, // obtener el id desde el local storage
+
+    }
+    messagesStore.addMessage(data)
+    inputText.value = ""
+
   }
 
   watch(

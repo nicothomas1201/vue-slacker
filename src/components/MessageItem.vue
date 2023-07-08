@@ -1,5 +1,5 @@
 <template>
-  <div class="message-item">
+  <div :class="`message-item ${isMe}`">
     <img :src="avatar" :alt="username" >
     <div class="message-content">
       <div class="username-time">
@@ -12,16 +12,23 @@
 </template>
 
 <script setup>
-  import { defineProps, toRefs, } from 'vue';
+  import { defineProps, toRefs, ref } from 'vue';
 
+
+  const isMe = ref('')
   const props = defineProps({
     message: String,
     username: String,
     avatar: String,
-    time: String
+    time: String,
+    authorId: Number
   })
 
-  const { message, username, avatar, time } = toRefs(props)
+  const { message, username, avatar, time, authorId } = toRefs(props)
+
+  if(authorId.value === 1){
+    isMe.value = 'me'
+  }
 
 </script>
 
@@ -30,6 +37,12 @@
   display: flex;
   align-items: start;
   gap: 16px;
+  max-inline-size: 250px;
+  inline-size: 100%;
+}
+
+.message-item.me{
+  align-self: flex-end;
 }
 
 .message-item .username{
